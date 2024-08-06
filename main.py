@@ -6,15 +6,15 @@ model = SentenceTransformer('sentence-transformers/distiluse-base-multilingual-c
 
 # Two lists of sentences
 sentences1 = [
-    "The new movie is awesome",
+    "Новий фільм прекрасний",
     "The cat sits outside",
-    "A man is playing guitar",
+    "Чоловік грає на гітарі",
 ]
 
 sentences2 = [
     "The dog plays in the garden",
     "The new movie is so great",
-    "A woman watches TV",
+    "Жінка дивиться телебачення",
 ]
 
 # Compute embeddings for both lists
