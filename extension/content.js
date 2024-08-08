@@ -1,17 +1,22 @@
 const mediumHighlighter = document.createElement("medium-highlighter");
-document.body.appendChild(mediumHighlighter); 
+document.body.appendChild(mediumHighlighter);
+
+const setMarkerPosition = (markerPosition) =>
+  mediumHighlighter.setAttribute("markerPosition", JSON.stringify(markerPosition));
 
 const getSelectedText = () => window.getSelection().toString();
 
 document.addEventListener("click", () => {
-  const selectedText = getSelectedText()
-  if (selectedText.length > 0){
+  const selectedText = getSelectedText();
+  if (selectedText.length > 0) {
+    setMarkerPosition(getMarkerPosition());
     showPopup(getMarkerPosition(), selectedText);
   }
 });
 
 document.addEventListener("selectionchange", () => {
   if (getSelectedText().length === 0) {
+    setMarkerPosition({ display: "none" });
     hidePopup();
   }
 });
@@ -29,7 +34,6 @@ function showPopup(position, selectedText) {
   let popup = document.getElementById("textPopup");
 
   if (!popup) {
-
     popup = document.createElement("div");
     popup.id = "textPopup";
     popup.style.position = "absolute";
@@ -45,6 +49,7 @@ function showPopup(position, selectedText) {
   popup.style.left = `${position.left}px`;
   popup.style.top = `${position.top}px`;
   popup.style.display = "block";
+
 }
 
 // Function to hide the popup
@@ -54,5 +59,3 @@ function hidePopup() {
     popup.style.display = "none";
   }
 }
-
-
