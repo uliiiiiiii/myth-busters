@@ -1,53 +1,17 @@
-// const mediumHighlighter = document.createElement("medium-highlighter");
-// document.body.appendChild(mediumHighlighter);
-
-// const setMarkerPosition = (markerPosition) =>
-//   mediumHighlighter.setAttribute("markerPosition", JSON.stringify(markerPosition));
-
-// const getSelectedText = () => window.getSelection().toString();
-
-// document.addEventListener("click", () => {
-//   if (getSelectedText().length > 0) {
-//     setMarkerPosition(getMarkerPosition());
-//   }
-// });
-
-// document.addEventListener("selectionchange", () => {
-//   if (getSelectedText().length === 0) {
-//     setMarkerPosition({ display: "none" });
-//     console.log(getSelectedText());
-//   }
-// });
-
-// function getMarkerPosition() {
-//   const rangeBounds = window.getSelection().getRangeAt(0).getBoundingClientRect();
-//   return {
-//     // Substract width of marker button -> 40px / 2 = 20
-//     left: rangeBounds.left + rangeBounds.width / 2 - 20,
-//     top: rangeBounds.top - 30,
-//     display: "flex",
-//   };
-// }
-
-
 const mediumHighlighter = document.createElement("medium-highlighter");
-document.body.appendChild(mediumHighlighter);
-
-const setMarkerPosition = (markerPosition) =>
-  mediumHighlighter.setAttribute("markerPosition", JSON.stringify(markerPosition));
+document.body.appendChild(mediumHighlighter); 
 
 const getSelectedText = () => window.getSelection().toString();
 
 document.addEventListener("click", () => {
-  if (getSelectedText().length > 0) {
-    //setMarkerPosition(getMarkerPosition());
-    showPopup(getMarkerPosition());
+  const selectedText = getSelectedText()
+  if (selectedText.length > 0){
+    showPopup(getMarkerPosition(), selectedText);
   }
 });
 
 document.addEventListener("selectionchange", () => {
   if (getSelectedText().length === 0) {
-    //rsetMarkerPosition({ display: "none" });
     hidePopup();
   }
 });
@@ -55,18 +19,17 @@ document.addEventListener("selectionchange", () => {
 function getMarkerPosition() {
   const rangeBounds = window.getSelection().getRangeAt(0).getBoundingClientRect();
   return {
-    // Subtract width of marker button -> 40px / 2 = 20
-    left: rangeBounds.left + rangeBounds.width / 2 - 20,
+    left: rangeBounds.left + rangeBounds.width / 2 - 20, //fix the -20 to value width of the box / 2
     top: rangeBounds.top - 30,
     display: "flex",
   };
 }
 
-// Function to create and show the popup
-function showPopup(position) {
+function showPopup(position, selectedText) {
   let popup = document.getElementById("textPopup");
 
   if (!popup) {
+
     popup = document.createElement("div");
     popup.id = "textPopup";
     popup.style.position = "absolute";
@@ -75,7 +38,7 @@ function showPopup(position) {
     popup.style.padding = "10px";
     popup.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.1)";
     popup.style.borderRadius = "4px";
-    popup.innerHTML = "<p>Highlighted text action</p>";
+    popup.innerHTML = `<p>${selectedText}</p>`;
     document.body.appendChild(popup);
   }
 
