@@ -11,10 +11,11 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["mediumHighlighter.js", "content.js"]
+      "js": ["mediumHighlighter.js", "content.js", "observer.js",]
     }
   ],
   "action": {
+    "default_icon": {},
     "default_title": "Countering Russian Disinformation",
     "default_popup": "options.html"
   },

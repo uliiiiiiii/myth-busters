@@ -14,6 +14,7 @@ const config = {
     options: "./src/options.js",
     content: "./src/content.js",
     mediumHighlighter: "./src/mediumHighlighter.js",
+    observer: './src/observer.js',
   },
   output: {
     path: path.resolve(__dirname, "build"),

@@ -9,7 +9,7 @@
     "webpack": "^5.79.0",
     "webpack-cli": "^5.1.4"
   },
-  "name": "mythbusters",
+  "name": "Countering Russian Disinformation",
   "description": "",
   "version": "1.0.0",
   "type": "module",
@@ -19,6 +19,6 @@
     "dev": "webpack --watch"
   },
   "keywords": [],
-  "author": "",
+  "author": "ULTA 2024",
   "license": "MIT"
 }
