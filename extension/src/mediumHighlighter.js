@@ -83,4 +83,4 @@ class MediumHighlighter extends HTMLElement {
   }
 }
 
-window.customElements.define("medium-highlighter", MediumHighlighter);
+window.customElements.define("mediumHighlighter", MediumHighlighter);

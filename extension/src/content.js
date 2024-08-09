@@ -1,4 +1,4 @@
-const mediumHighlighter = document.createElement("medium-highlighter");
+const mediumHighlighter = document.createElement("mediumHighlighter");
 document.body.appendChild(mediumHighlighter);
 
 const setMarkerPosition = (markerPosition) =>
@@ -31,25 +31,33 @@ function getMarkerPosition() {
 }
 
 function showPopup(position, selectedText) {
-  let popup = document.getElementById("textPopup");
+  console.log(selectedText);
+  chrome.runtime.sendMessage(
+    {
+      action: "classify",
+      text: selectedText,
+    },
+    (response) => {
+      let popup = document.getElementById("textPopup");
 
-  if (!popup) {
-    popup = document.createElement("div");
-    popup.id = "textPopup";
-    popup.style.position = "absolute";
-    popup.style.backgroundColor = "red";
-    popup.style.border = "1px solid #ccc";
-    popup.style.padding = "10px";
-    popup.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.1)";
-    popup.style.borderRadius = "4px";
-    popup.innerHTML = `<p>${selectedText}</p>`;
-    document.body.appendChild(popup);
-  }
+      if (!popup) {
+        popup = document.createElement("div");
+        popup.id = "textPopup";
+        popup.style.position = "absolute";
+        popup.style.backgroundColor = "red";
+        popup.style.border = "1px solid #ccc";
+        popup.style.padding = "10px";
+        popup.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.1)";
+        popup.style.borderRadius = "4px";
+        document.body.appendChild(popup);
+      }
 
-  popup.style.left = `${position.left}px`;
-  popup.style.top = `${position.top}px`;
-  popup.style.display = "block";
-
+      popup.innerHTML = `<p>${JSON.stringify(response)}</p>`;
+      popup.style.left = `${position.left}px`;
+      popup.style.top = `${position.top}px`;
+      popup.style.display = "block";
+    }
+  );
 }
 
 // Function to hide the popup
