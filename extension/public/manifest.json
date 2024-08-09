@@ -20,19 +20,14 @@
         "<all_urls>"
       ],
       "js": [
-        "medium-highlighter.js",
+        "observer.js",
         "content.js"
       ]
     }
   ],
   "action": {
-    "default_icon": {
-      "16": "icons/icon.png",
-      "24": "icons/icon.png",
-      "32": "icons/icon.png"
-    },
-    "default_title": "Countering Russian Disinformation",
-    "default_popup": "popup.html"
+    "default_icon": {},
+    "default_title": "Countering Russian Disinformation"
   },
   "content_security_policy": {
     "extension_pages": "script-src 'self' 'wasm-unsafe-eval'"

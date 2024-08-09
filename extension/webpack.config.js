@@ -13,6 +13,7 @@ const config = {
     entry: {
         background: './src/background.js',
         options: './src/options.js',
+        observer: './src/observer.js',
         content: './src/content.js',
     },
     output: {
