@@ -1,19 +1,41 @@
 {
-  "name": "Disinformation Detector",
-  "version": "1.0.0",
   "manifest_version": 3,
+  "name": "Disinformation Detector",
+  "description": "Countering Russian Disinformation",
+  "version": "0.0.1",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "contextMenus",
+    "storage",
+    "unlimitedStorage"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
+      "matches": [
+        "<all_urls>"
+      ],
       "js": [
-        "node_modules/@webcomponents/custom-elements/custom-elements.min.js",
         "medium-highlighter.js",
         "content.js"
       ]
     }
   ],
-  "permissions": [
-    "storage"
-  ],
+  "action": {
+    "default_icon": {
+      "16": "icons/icon.png",
+      "24": "icons/icon.png",
+      "32": "icons/icon.png"
+    },
+    "default_title": "Countering Russian Disinformation",
+    "default_popup": "popup.html"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'"
+  },
   "options_page": "options.html"
 }
